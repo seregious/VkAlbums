@@ -1,4 +1,4 @@
-package com.example.vkalbums.presentation.presentation
+package com.example.vkalbums.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
