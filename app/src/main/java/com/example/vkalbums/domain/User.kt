@@ -1,4 +1,4 @@
-package com.example.vkalbums.data
+package com.example.vkalbums.domain
 
 data class User (
     val token: String,
