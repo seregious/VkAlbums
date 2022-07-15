@@ -5,18 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.vkalbums.R
-import com.example.vkalbums.databinding.FragmentInfoBinding
+import com.example.vkalbums.databinding.FragmentAlbumsBinding
 
 class AlbumsFragment : Fragment() {
 
-    lateinit var binding: FragmentInfoBinding
+    lateinit var binding: FragmentAlbumsBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentInfoBinding.inflate(inflater)
+        binding = FragmentAlbumsBinding.inflate(inflater)
         return binding.root
     }
 
