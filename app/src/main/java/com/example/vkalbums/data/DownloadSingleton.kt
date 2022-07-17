@@ -3,11 +3,12 @@ package com.example.vkalbums.data
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object AlbumsDownload {
+object DownloadSingleton {
     var retrofit: Retrofit = Retrofit.Builder()
-        .baseUrl("https://api.vk.com/method/")
+        .baseUrl(Constants.BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
-    var getAlbums = retrofit.create(AlbumsInterface::class.java)
+    var getAlbums: AlbumsInterface = retrofit.create(AlbumsInterface::class.java)
+    var getPhotos = retrofit.create(PhotosInterface::class.java)
 }
