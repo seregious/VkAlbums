@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.vkalbums.R
@@ -30,6 +31,7 @@ class AlbumsFragment : Fragment(), AlbumsAdapter.Listener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupAlbums()
+        setTitle()
     }
 
     private fun setupAlbums() {
@@ -49,6 +51,11 @@ class AlbumsFragment : Fragment(), AlbumsAdapter.Listener {
 
     private fun setupFragment() {
         parentFragmentManager.beginTransaction().replace(R.id.fragmentContainer, PhotosFragment()).commit()
+    }
+
+    private fun setTitle() {
+        val text = getString(R.string.albums)
+        (activity as AppCompatActivity).supportActionBar?.title = text
     }
 
 }
