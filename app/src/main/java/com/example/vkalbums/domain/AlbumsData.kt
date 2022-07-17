@@ -1,10 +1,10 @@
 package com.example.vkalbums.domain
 
 data class AlbumsData(
-    val response: Response
+    val response: ResponseAlbums
 )
 
-data class Response (
+data class ResponseAlbums (
     val items: List<Album>
         )
 
