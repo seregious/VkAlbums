@@ -1,6 +1,6 @@
 package com.example.vkalbums.domain
 
 data class User (
-    val token: String,
+    var token: String,
     val id: String
 )
