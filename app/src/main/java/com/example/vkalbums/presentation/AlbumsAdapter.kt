@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.vkalbums.R
 import com.example.vkalbums.databinding.AlbumCardBinding
 import com.example.vkalbums.domain.Album
+import com.example.vkalbums.presentation.fragments.AlbumsFragment
+import com.example.vkalbums.presentation.fragments.PhotosFragment
 import com.squareup.picasso.Picasso
 
 class AlbumsAdapter(
