@@ -79,7 +79,6 @@ class AuthFragment : Fragment() {
             val id = url.subSequence(269,277).toString()
             val user = User(token, id)
             viewModel.currentUser.value = user
-
             setupFragment()
         }
     }
