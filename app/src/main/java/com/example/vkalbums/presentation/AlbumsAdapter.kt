@@ -11,7 +11,7 @@ import com.squareup.picasso.Picasso
 
 class AlbumsAdapter(
     private val listener: Listener
-): RecyclerView.Adapter<AlbumsAdapter.RepHolder>() {
+): RecyclerView.Adapter<AlbumsAdapter.AlbumHolder>() {
 
     var albumsList: List<Album> = listOf()
         set(value) {
@@ -19,7 +19,7 @@ class AlbumsAdapter(
             notifyDataSetChanged()
         }
 
-    class RepHolder(view: View): RecyclerView.ViewHolder(view) {
+    class AlbumHolder(view: View): RecyclerView.ViewHolder(view) {
         private var binding = AlbumCardBinding.bind(view)
 
         fun bind(album: Album, listener: Listener) = with(binding){
@@ -31,12 +31,12 @@ class AlbumsAdapter(
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlbumHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.album_card, parent, false)
-        return RepHolder(view)
+        return AlbumHolder(view)
     }
 
-    override fun onBindViewHolder(holder: RepHolder, position: Int) {
+    override fun onBindViewHolder(holder: AlbumHolder, position: Int) {
         holder.bind(albumsList[position], listener)
     }
 
