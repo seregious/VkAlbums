@@ -3,6 +3,7 @@ package com.example.vkalbums.presentation
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.vkalbums.R
+import com.example.vkalbums.presentation.fragments.AuthFragment
 
 
 class MainActivity : AppCompatActivity() {
