@@ -7,7 +7,9 @@
         <entry key="app/src/main/res/layout/album_card.xml" value="0.29375" />
         <entry key="app/src/main/res/layout/fragment_albums.xml" value="0.2947916666666667" />
         <entry key="app/src/main/res/layout/fragment_auth.xml" value="0.28072916666666664" />
+        <entry key="app/src/main/res/layout/fragment_detailed.xml" value="0.2947916666666667" />
         <entry key="app/src/main/res/layout/fragment_photos.xml" value="0.2947916666666667" />
+        <entry key="app/src/main/res/layout/photo_card.xml" value="0.29375" />
       </map>
     </option>
   </component>
