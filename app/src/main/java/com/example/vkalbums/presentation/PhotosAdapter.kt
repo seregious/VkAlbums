@@ -11,7 +11,7 @@ import com.example.vkalbums.presentation.fragments.PhotosFragment
 import com.squareup.picasso.Picasso
 
 class PhotosAdapter(
-    private val listener: PhotosFragment
+    private val listener: Listener
 ): RecyclerView.Adapter<PhotosAdapter.PhotoHolder>() {
 
     var photosList: List<Photo> = listOf()

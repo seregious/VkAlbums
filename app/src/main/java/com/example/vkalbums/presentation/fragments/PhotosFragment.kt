@@ -8,10 +8,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.vkalbums.databinding.FragmentPhotosBinding
+import com.example.vkalbums.domain.Photo
 import com.example.vkalbums.presentation.PhotosAdapter
 import com.example.vkalbums.presentation.ViewModel
 
-class PhotosFragment : Fragment() {
+class PhotosFragment : Fragment(), PhotosAdapter.Listener {
 
     private lateinit var binding: FragmentPhotosBinding
     private val viewModel: ViewModel by activityViewModels()
@@ -40,7 +41,9 @@ class PhotosFragment : Fragment() {
         }
     }
 
+    override fun onClick(photo: Photo) {
 
+    }
 
 
 }
