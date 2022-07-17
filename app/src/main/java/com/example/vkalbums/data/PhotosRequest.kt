@@ -1,10 +1,10 @@
 package com.example.vkalbums.data
 
+import com.example.vkalbums.data.network.DownloadSingleton
+import com.example.vkalbums.domain.Photo
+
 object PhotosRequest {
-    fun makeRequest(userId: String, token: String, albumId: String): String {
-        val ownerId: String = "owner_id"
-        val albumId: String = "&album_id"
-        val userToken: String = "&access_token="
-        return ownerId + userId + albumId + albumId + userToken + token + Constants.API
+    suspend fun get(id: String, idAlbum: String, token: String): List<Photo> {
+        return DownloadSingleton.getPhotos.getPhotosByToken(id, idAlbum, token).response.items
     }
 }
