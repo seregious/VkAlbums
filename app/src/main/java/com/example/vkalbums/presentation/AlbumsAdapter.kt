@@ -7,8 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.vkalbums.R
 import com.example.vkalbums.databinding.AlbumCardBinding
 import com.example.vkalbums.domain.Album
-import com.example.vkalbums.presentation.fragments.AlbumsFragment
-import com.example.vkalbums.presentation.fragments.PhotosFragment
 import com.squareup.picasso.Picasso
 
 class AlbumsAdapter(
@@ -25,7 +23,7 @@ class AlbumsAdapter(
         private var binding = AlbumCardBinding.bind(view)
 
         fun bind(album: Album, listener: Listener) = with(binding){
-            Picasso.get().load(album.thumb_src).into(albumCover)
+            Picasso.get().load(album.sizes.last().url).into(albumCover)
             albumName.text = album.title
             itemView.setOnClickListener {
                 listener.onClick(album)
