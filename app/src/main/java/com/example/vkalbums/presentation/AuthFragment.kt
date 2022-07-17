@@ -2,19 +2,18 @@ package com.example.vkalbums.presentation
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.example.vkalbums.R
 import com.example.vkalbums.data.Constants
 import com.example.vkalbums.databinding.FragmentAuthBinding
+import com.example.vkalbums.domain.User
 
 
 class AuthFragment : Fragment() {
@@ -49,13 +48,7 @@ class AuthFragment : Fragment() {
             override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
                 if (url != null) {
                     webView.loadUrl(url)
-                    if (url.length == 277) {
-                        Toast.makeText(activity,"ACCEPT", Toast.LENGTH_SHORT).show()
-                        Log.d("url", "$url")
-                    } else {
-                        Toast.makeText(activity,"$url", Toast.LENGTH_SHORT).show()
-                        Log.d("url", "$url")
-                    }
+                    setupUser(url)
                 }
                 return true
             }
@@ -77,6 +70,21 @@ class AuthFragment : Fragment() {
             this,
             callback
         )
+    }
+
+    private fun setupUser(url: String) {
+        if (url.length == 277) {
+            val token = url.subSequence(45,243).toString()
+            val id = url.subSequence(269,277).toString()
+            val user = User(token, id)
+            viewModel.currentUser.value = user
+
+            setupFragment()
+        }
+    }
+
+    private fun setupFragment() {
+        parentFragmentManager.beginTransaction().replace(R.id.fragmentContainer, AlbumsFragment()).commit()
     }
 
 }
