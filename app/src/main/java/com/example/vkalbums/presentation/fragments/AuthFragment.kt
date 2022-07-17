@@ -1,4 +1,4 @@
-package com.example.vkalbums.presentation
+package com.example.vkalbums.presentation.fragments
 
 import android.content.Context
 import android.os.Bundle
@@ -14,6 +14,7 @@ import com.example.vkalbums.R
 import com.example.vkalbums.data.Constants
 import com.example.vkalbums.databinding.FragmentAuthBinding
 import com.example.vkalbums.domain.User
+import com.example.vkalbums.presentation.ViewModel
 
 
 class AuthFragment : Fragment() {
