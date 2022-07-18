@@ -51,7 +51,6 @@ class AuthFragment : Fragment() {
                 if (url != null) {
                     webView.loadUrl(url)
                     setupUser(url)
-                    Log.d("url", url + url.length)
                 }
                 return true
             }
@@ -75,13 +74,35 @@ class AuthFragment : Fragment() {
         )
     }
 
+    private fun chekSignIn() {
+        if (loadUser() != null) {
+            setupFragment()
+            Log.d("url", "loaded")
+        }
+    }
+
     private fun setupUser(url: String) {
+        with (url) {
+            when {
+                contains("https://oauth.vk.com/blank.html#access_token=vk1") -> newLogin(url)
+                else -> Log.d("url", "url denied")
+            }
+        }
+    }
+
+    private fun newLogin(url: String) {
+        getIdTokenFromUrl(url)
+        chekSignIn()
+        saveUser()
+        setupFragment()
+    }
+
+    private fun getIdTokenFromUrl(url: String) {
         if (url.length == 277) {
-            val token = url.subSequence(45,243).toString()
-            val id = url.subSequence(269,277).toString()
+            val token = url.subSequence(45, 243).toString()
+            val id = url.subSequence(269, 277).toString()
             val user = User(token, id)
             viewModel.currentUser.value = user
-            setupFragment()
         }
     }
 
@@ -99,22 +120,23 @@ class AuthFragment : Fragment() {
         }
     }
 
-    private fun loadUser() {
-        if (activity != null && viewModel.currentUser.value != null) {
+    private fun loadUser(): String? {
+        if (activity != null) {
             val shared = activity!!.getSharedPreferences("user", Context.MODE_PRIVATE)
             val token = shared.getString("token", null)
             val id = shared.getString("id", null)
             if (id != null && token != null) {
-                viewModel.currentUser.value!!.id = id
-                viewModel.currentUser.value!!.token = token
+                val user = User(token, id)
+                viewModel.currentUser.value = user
             }
         }
+        return viewModel.currentUser.value?.token
     }
 
-    private fun clear() {
-        val shared = activity!!.getSharedPreferences("user", Context.MODE_PRIVATE)
-        val edit = shared.edit()
-        edit.clear()
-    }
+//    private fun clear() {
+//        val shared = activity!!.getSharedPreferences("user", Context.MODE_PRIVATE)
+//        val edit = shared.edit()
+//        edit.clear()
+//    }
 
 }
