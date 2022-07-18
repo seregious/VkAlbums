@@ -23,6 +23,7 @@ class AlbumsAdapter(
         private var binding = AlbumCardBinding.bind(view)
 
         fun bind(album: Album, listener: Listener) = with(binding){
+            albumCover.setImageResource(R.drawable.ic_thumbnail)
             Picasso.get().load(album.sizes.last().url).into(albumCover)
             albumName.text = album.title
             itemView.setOnClickListener {
