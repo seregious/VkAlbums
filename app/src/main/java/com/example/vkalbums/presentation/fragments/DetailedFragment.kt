@@ -1,8 +1,6 @@
 package com.example.vkalbums.presentation.fragments
 
-
 import android.os.Bundle
-import android.os.StrictMode
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,6 +31,7 @@ class DetailedFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setTitle()
         setImage()
+        setupButton()
     }
 
     private fun setTitle() {
@@ -54,5 +53,11 @@ class DetailedFragment : Fragment() {
                 .toLocalDateTime().toString()
         }
         return dt
+    }
+
+    private fun setupButton() {
+        binding.shareButton.setOnClickListener {
+
+        }
     }
 }
