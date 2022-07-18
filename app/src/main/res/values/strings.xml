@@ -4,4 +4,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="albums">Albums</string>
     <string name="shareButton">Share</string>
+    <string name="albumCover">Album Cover</string>
+    <string name="photoInAlbum">Photo in album</string>
+    <string name="albumName">Album name</string>
 </resources>
