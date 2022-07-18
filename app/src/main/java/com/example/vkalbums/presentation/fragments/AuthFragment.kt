@@ -2,6 +2,7 @@ package com.example.vkalbums.presentation.fragments
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,7 +34,7 @@ class AuthFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupWebView()
-        checkUrl()
+        openUrl()
     }
 
     private fun setupWebView() = with(binding) {
@@ -43,13 +44,14 @@ class AuthFragment : Fragment() {
         webView.settings.setSupportZoom(true)
     }
 
-    private fun checkUrl() = with(binding){
+    private fun openUrl() = with(binding){
         webView.webViewClient = object : WebViewClient() {
             @Deprecated("Deprecated in Java")
             override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
                 if (url != null) {
                     webView.loadUrl(url)
                     setupUser(url)
+                    Log.d("url", url + url.length)
                 }
                 return true
             }
@@ -85,6 +87,34 @@ class AuthFragment : Fragment() {
 
     private fun setupFragment() {
         parentFragmentManager.beginTransaction().replace(R.id.fragmentContainer, AlbumsFragment()).commit()
+    }
+
+    private fun saveUser() {
+        if (activity != null) {
+            val shared = activity!!.getSharedPreferences("user", Context.MODE_PRIVATE)
+            val edit = shared.edit()
+            edit.putString("token", viewModel.currentUser.value?.token)
+            edit.putString("id", viewModel.currentUser.value?.id)
+            edit.commit()
+        }
+    }
+
+    private fun loadUser() {
+        if (activity != null && viewModel.currentUser.value != null) {
+            val shared = activity!!.getSharedPreferences("user", Context.MODE_PRIVATE)
+            val token = shared.getString("token", null)
+            val id = shared.getString("id", null)
+            if (id != null && token != null) {
+                viewModel.currentUser.value!!.id = id
+                viewModel.currentUser.value!!.token = token
+            }
+        }
+    }
+
+    private fun clear() {
+        val shared = activity!!.getSharedPreferences("user", Context.MODE_PRIVATE)
+        val edit = shared.edit()
+        edit.clear()
     }
 
 }
