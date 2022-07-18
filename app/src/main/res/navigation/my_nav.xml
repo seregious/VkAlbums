@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav"
+    app:startDestination="@id/authFragment">
+
+    <fragment
+        android:id="@+id/authFragment"
+        android:name="com.example.vkalbums.presentation.fragments.AuthFragment"
+        android:label="fragment_auth"
+        tools:layout="@layout/fragment_auth" >
+        <action
+            android:id="@+id/action_authFragment_to_albumsFragment"
+            app:destination="@id/albumsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/albumsFragment"
+        android:name="com.example.vkalbums.presentation.fragments.AlbumsFragment"
+        android:label="fragment_photos"
+        tools:layout="@layout/fragment_photos" >
+        <action
+            android:id="@+id/action_albumsFragment_to_authFragment"
+            app:destination="@id/authFragment" />
+        <action
+            android:id="@+id/action_albumsFragment_to_photosFragment"
+            app:destination="@id/photosFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailedFragment"
+        android:name="com.example.vkalbums.presentation.fragments.DetailedFragment"
+        android:label="fragment_detailed"
+        tools:layout="@layout/fragment_detailed" >
+        <action
+            android:id="@+id/action_detailedFragment_to_photosFragment"
+            app:destination="@id/photosFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/photosFragment"
+        android:name="com.example.vkalbums.presentation.fragments.PhotosFragment"
+        android:label="PhotosFragment" >
+        <action
+            android:id="@+id/action_photosFragment_to_albumsFragment"
+            app:destination="@id/albumsFragment" />
+        <action
+            android:id="@+id/action_photosFragment_to_detailedFragment"
+            app:destination="@id/detailedFragment" />
+    </fragment>
+</navigation>
