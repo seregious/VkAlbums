@@ -4,11 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.Navigation
+import com.example.vkalbums.R
 import com.example.vkalbums.databinding.FragmentDetailedBinding
 import com.example.vkalbums.presentation.ViewModel
+import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import java.time.Instant
 import java.time.ZoneId
@@ -18,6 +23,15 @@ class DetailedFragment : Fragment() {
 
     private lateinit var binding: FragmentDetailedBinding
     private val viewModel: ViewModel by activityViewModels()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        activity?.onBackPressedDispatcher?.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                parentFragmentManager.beginTransaction().replace(R.id.fragmentContainer, PhotosFragment()).commit()
+            }
+        })
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,7 +55,18 @@ class DetailedFragment : Fragment() {
 
     private fun setImage() {
         val image = viewModel.currentPhoto.value?.sizes?.last()?.url
-        Picasso.get().load(image).into(binding.imageView)
+        Picasso.get()
+            .load(image)
+            .into(binding.imageView, object: Callback {
+                override fun onSuccess() {
+                    binding.progress.isVisible = false
+                }
+
+                override fun onError(e: Exception?) {
+                    TODO("not implemented")
+                }
+
+            })
     }
 
     private fun getDateTime(): String {

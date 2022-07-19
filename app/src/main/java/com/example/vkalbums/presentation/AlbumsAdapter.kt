@@ -3,10 +3,12 @@ package com.example.vkalbums.presentation
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vkalbums.R
 import com.example.vkalbums.databinding.AlbumCardBinding
 import com.example.vkalbums.domain.Album
+import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 
 class AlbumsAdapter(
@@ -23,8 +25,19 @@ class AlbumsAdapter(
         private var binding = AlbumCardBinding.bind(view)
 
         fun bind(album: Album, listener: Listener) = with(binding){
-            albumCover.setImageResource(R.drawable.ic_thumbnail)
-            Picasso.get().load(album.sizes.last().url).into(albumCover)
+            Picasso.get()
+                .load(album.sizes.last().url)
+                .into(albumCover, object: Callback {
+                    override fun onSuccess() {
+                        progress.isVisible = false
+                    }
+
+                    override fun onError(e: Exception?) {
+                        TODO("not implemented")
+                    }
+
+                })
+
             albumName.text = album.title
             itemView.setOnClickListener {
                 listener.onClick(album)

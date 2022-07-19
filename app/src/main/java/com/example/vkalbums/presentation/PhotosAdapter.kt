@@ -3,10 +3,12 @@ package com.example.vkalbums.presentation
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vkalbums.R
 import com.example.vkalbums.databinding.PhotoCardBinding
 import com.example.vkalbums.domain.Photo
+import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 
 class PhotosAdapter(
@@ -23,7 +25,18 @@ class PhotosAdapter(
         private var binding = PhotoCardBinding.bind(view)
 
         fun bind(photo: Photo, listener: Listener) = with(binding){
-            Picasso.get().load(photo.sizes.last().url).into(photoView)
+            Picasso.get()
+                .load(photo.sizes.last().url)
+                .into(photoView, object: Callback {
+                    override fun onSuccess() {
+                        progress.isVisible = false
+                    }
+
+                    override fun onError(e: Exception?) {
+                        TODO("not implemented")
+                    }
+
+                })
             itemView.setOnClickListener {
                 listener.onClick(photo)
             }
