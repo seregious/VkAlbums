@@ -33,7 +33,6 @@ class PhotosAdapter(
                     }
 
                     override fun onError(e: Exception?) {
-                        TODO("not implemented")
                     }
 
                 })

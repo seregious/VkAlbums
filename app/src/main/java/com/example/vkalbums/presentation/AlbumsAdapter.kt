@@ -33,7 +33,6 @@ class AlbumsAdapter(
                     }
 
                     override fun onError(e: Exception?) {
-                        TODO("not implemented")
                     }
 
                 })
