@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Альбомы ВК</string>
+    <string name="albums">Альбомы</string>
+    <string name="shareButton">Поделиться</string>
+    <string name="albumCover">Обложка альбома</string>
+    <string name="photoInAlbum">Фото в альбоме</string>
+    <string name="albumName">Название альбома</string>
+    <string name="loginVk">Войти через ВК</string>
+    <string name="errorToken">Время действия вашего токены вышло</string>
+    <string name="loginToast">Пожалуйста, авторизуйтесь через VK</string>
+    <string name="logOutToast">Вы вышли из системы</string>
+</resources>

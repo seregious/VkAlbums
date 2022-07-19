@@ -1,10 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">VkAlbums</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="albums">Albums</string>
     <string name="shareButton">Share</string>
     <string name="albumCover">Album Cover</string>
     <string name="photoInAlbum">Photo in album</string>
     <string name="albumName">Album name</string>
+    <string name="loginVk">Login with VK</string>
+    <string name="errorToken">Your token has expired</string>
+    <string name="loginToast">Please login with VK</string>
+    <string name="logOutToast">You have logged out</string>
 </resources>
