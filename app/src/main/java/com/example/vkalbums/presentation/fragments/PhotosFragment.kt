@@ -5,8 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.vkalbums.R
 import com.example.vkalbums.databinding.FragmentPhotosBinding
@@ -20,6 +22,15 @@ class PhotosFragment : Fragment(), PhotosAdapter.Listener {
     private val viewModel: ViewModel by activityViewModels()
     private lateinit var photosAdapter: PhotosAdapter
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        activity?.onBackPressedDispatcher?.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                parentFragmentManager.beginTransaction().replace(R.id.fragmentContainer, AlbumsFragment()).commit()
+            }
+        })
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,6 +43,8 @@ class PhotosFragment : Fragment(), PhotosAdapter.Listener {
         super.onViewCreated(view, savedInstanceState)
         setupPhotos()
         setTitle()
+
+
     }
 
     private fun setupPhotos() {

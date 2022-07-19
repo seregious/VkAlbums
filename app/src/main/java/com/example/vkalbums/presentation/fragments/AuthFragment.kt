@@ -74,26 +74,19 @@ class AuthFragment : Fragment() {
         )
     }
 
-    private fun chekSignIn() {
-        if (viewModel.currentUser.value != null) {
-            loadUser()
-            setupFragment()
-            Log.d("url", "loaded")
-        }
-    }
 
     private fun setupUser(url: String) {
-        with (url) {
-            when {
-                contains("https://oauth.vk.com/blank.html#access_token=vk1") -> newLogin(url)
-                else -> chekSignIn()
-            }
+        if (url.contains(Constants.TOKEN_URL)) {
+            newLogin(url)
+        } else if (url.contains(Constants.DENIED_URL)) {
+            parentFragmentManager.beginTransaction().replace(R.id.fragmentContainer, FirstFragment()).commit()
+        } else {
+            return
         }
     }
 
     private fun newLogin(url: String) {
         getIdTokenFromUrl(url)
-        //chekSignIn()
         saveUser()
         setupFragment()
     }
@@ -120,23 +113,5 @@ class AuthFragment : Fragment() {
             edit.commit()
         }
     }
-
-    private fun loadUser() {
-        if (activity != null) {
-            val shared = activity!!.getSharedPreferences("user", Context.MODE_PRIVATE)
-            val token = shared.getString("token", null)
-            val id = shared.getString("id", null)
-            if (id != null && token != null) {
-                val user = User(token, id)
-                viewModel.currentUser.value = user
-            }
-        }
-    }
-
-//    private fun clear() {
-//        val shared = activity!!.getSharedPreferences("user", Context.MODE_PRIVATE)
-//        val edit = shared.edit()
-//        edit.clear()
-//    }
 
 }

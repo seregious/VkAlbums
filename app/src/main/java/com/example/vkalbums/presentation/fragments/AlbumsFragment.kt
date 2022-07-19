@@ -1,24 +1,23 @@
 package com.example.vkalbums.presentation.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.vkalbums.R
 import com.example.vkalbums.databinding.FragmentAlbumsBinding
 import com.example.vkalbums.domain.Album
 import com.example.vkalbums.presentation.AlbumsAdapter
 import com.example.vkalbums.presentation.ViewModel
+
 
 class AlbumsFragment : Fragment(), AlbumsAdapter.Listener {
 
     private lateinit var binding: FragmentAlbumsBinding
     private val viewModel: ViewModel by activityViewModels()
     private lateinit var albumsAdapter: AlbumsAdapter
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,12 +49,11 @@ class AlbumsFragment : Fragment(), AlbumsAdapter.Listener {
     }
 
     private fun setupFragment() {
-        parentFragmentManager.beginTransaction().replace(R.id.fragmentContainer, PhotosFragment()).commit()
+        parentFragmentManager.beginTransaction().replace(com.example.vkalbums.R.id.fragmentContainer, PhotosFragment()).commit()
     }
 
     private fun setTitle() {
-        val text = getString(R.string.albums)
+        val text = getString(com.example.vkalbums.R.string.albums)
         (activity as AppCompatActivity).supportActionBar?.title = text
     }
-
 }
