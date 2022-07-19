@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
     private fun setupFirstFragment() {
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.fragmentContainer, AlbumsFragment())
+            .replace(R.id.fragmentContainer, FirstFragment())
             .commit()
     }
 
@@ -69,6 +69,7 @@ class MainActivity : AppCompatActivity() {
     private fun clear() {
         val shared = getSharedPreferences("user", Context.MODE_PRIVATE)
         val edit = shared.edit()
+        viewModel.currentUser.value = null
         edit.clear()
     }
 
