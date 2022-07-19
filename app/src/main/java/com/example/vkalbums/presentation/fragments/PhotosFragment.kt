@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.vkalbums.R
 import com.example.vkalbums.databinding.FragmentPhotosBinding

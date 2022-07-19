@@ -7,7 +7,6 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.activityViewModels
 import com.example.vkalbums.R
 import com.example.vkalbums.presentation.fragments.AlbumsFragment
 import com.example.vkalbums.presentation.fragments.FirstFragment
@@ -74,7 +73,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showLogOutToast() {
-        Toast.makeText(this, R.string.loginToast, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, R.string.loginToast, Toast.LENGTH_LONG).show()
     }
 
 }

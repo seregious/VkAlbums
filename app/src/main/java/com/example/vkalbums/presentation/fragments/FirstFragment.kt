@@ -68,12 +68,12 @@ class FirstFragment : Fragment() {
         parentFragmentManager.beginTransaction().replace(R.id.fragmentContainer, AlbumsFragment()).commit()
     }
 
-    private fun showErrorToast() {
-        Toast.makeText(this@FirstFragment.requireActivity(), R.string.errorToken, Toast.LENGTH_LONG).show();
-    }
+//    private fun showErrorToast() {
+//        Toast.makeText(this@FirstFragment.requireActivity(), R.string.errorToken, Toast.LENGTH_LONG).show()
+//    }
 
     private fun showLoginToast() {
-        Toast.makeText(this@FirstFragment.requireActivity(), R.string.loginToast, Toast.LENGTH_LONG).show();
+        Toast.makeText(this@FirstFragment.requireActivity(), R.string.loginToast, Toast.LENGTH_LONG).show()
     }
 
     private fun setButton() {
