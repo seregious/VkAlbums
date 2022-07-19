@@ -26,6 +26,10 @@ class ViewModel: ViewModel() {
         MutableLiveData<Photo>()
     }
 
+    val isTokenValid: MutableLiveData<Boolean> by lazy {
+        MutableLiveData<Boolean>()
+    }
+
     var albumsList = MutableLiveData<List<Album>>()
     var photosList = MutableLiveData<List<Photo>>()
 
@@ -38,8 +42,9 @@ class ViewModel: ViewModel() {
                 try {
                     list = AlbumsRequest.get(userId,userToken)
                     albumsList.postValue(list)
+                    isTokenValid.value = true
                 } catch (e: Exception) {
-                    Log.d("url", "fail download albums")
+                    isTokenValid.value = false
                 }
             }
         }
